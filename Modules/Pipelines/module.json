@@ -1,0 +1,18 @@
+{
+    "name": "Pipelines",
+    "alias": "pipelines",
+    "description": "",
+    "keywords": [],
+    "version": "1.0.0",
+	"active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\Pipelines\\Providers\\PipelinesServiceProvider",
+        "Modules\\Pipelines\\Providers\\RouteServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        
+    ],
+    "requires": []
+}
