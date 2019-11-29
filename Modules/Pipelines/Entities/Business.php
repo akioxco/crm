@@ -41,4 +41,13 @@ class Business extends Model
     {
         return $this->hasMany(PipelineBusiness::class);
     }
+
+    public function getValueAttribute()
+    {
+        $value = 0;
+        foreach($this->detailBusinesses as $detailBusiness){
+            $value = $value + $detailBusiness->product->price * $detailBusiness->quantity;
+        }
+        return $value;
+    }
 }

@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>
-        {{ trans('pipelines::businesses.title.edit business') }}
+        Informacion del Negocio <b>{{$business->name}}</b>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
@@ -12,12 +12,13 @@
 @stop
 
 @section('content')
+
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         {!! Form::model($business, ['route' => ['admin.pipelines.business.update', $business->id], 'method' => 'put']) !!}
         <div class="row">
             <div class="col-md-12">
-                <div class="nav-tabs-custom">
+                <div class="nav-tabs-custom box box-primary">
                     @include('partials.form-tab-headers')
                     <div class="tab-content">
                         <?php $i = 0; ?>
@@ -37,6 +38,60 @@
             </div>
         </div>
     {!! Form::close() !!}
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+
+        <div class="col-md-12">
+        <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{ $business->pipelineBusinesses->last()->pipeline->name }}</h3>
+              <p>Pipeline Actual</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+          </div>
+          </div>
+
+          <div class="col-md-12">
+          
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>
+                <?php echo \Carbon\Carbon::createFromTimeStamp(strtotime($business->created_at))->diffForHumans() ?>
+              </h3>
+              <p>Antiguedad del Negocio</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+          </div>
+          </div>
+
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <b>VENDEDOR</b> <br>
+                        <b>Nombre</b>: {{ isset($business->seller) ? $business->seller->first_name.' '.$business->seller->last_name : '-' }} <br>
+                        <b>Email</b>: {{ isset($business->seller) ? $business->seller->email : '-' }} <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <b>VALOR DEL NEGOCIO</b> <br>
+                        ${{ isset($business->value) ? $business->value : '-' }} <br>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+        </div>
     </div>
 </div>
 

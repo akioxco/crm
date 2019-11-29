@@ -55,7 +55,9 @@ class BusinessController extends AdminBaseController
     {
         $typebusiness = TypeBusiness::pluck('name', 'id');
         $contacts = Contact::pluck('name', 'id');
-        $users = User::pluck('first_name', 'id');
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('slug', 'salesman');
+        })->pluck('first_name', 'id');
         return view('pipelines::admin.businesses.create', compact('typebusiness', 'contacts', 'users'));
     }
 
@@ -83,7 +85,9 @@ class BusinessController extends AdminBaseController
     {
         $typebusiness = TypeBusiness::pluck('name', 'id');
         $contacts = Contact::pluck('name', 'id');
-        $users = User::pluck('first_name', 'id');
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('slug', 'salesman');
+        })->pluck('first_name', 'id');
         $businesses = Business::pluck('name', 'id');
         $products = Product::pluck('name', 'id');
         $pipelines = Pipeline::pluck('name', 'id');
