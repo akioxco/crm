@@ -32,7 +32,8 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Pipeline</th>
-                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>Vendedor</th>
+                                <th>Valor</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
@@ -44,19 +45,24 @@
                                     {{ $business->id }}
                                 </td>
                                 <td>
-                                    {{ $business->name }}
-                                </td>
-                                <td>
-                                <span class="badge badge-primary">
-                                {{ $business->pipelineBusinesses->last()->pipeline->name }}
-                                </span>
-                                </td>
-                                <td>
                                     <a href="{{ route('admin.pipelines.business.edit', [$business->id]) }}">
-                                        {{ $business->created_at }}
+                                        {{ $business->name }}
                                     </a>
                                 </td>
                                 <td>
+                                    <span class="badge badge-primary">
+                                    {{ $business->pipelineBusinesses->last()->pipeline->name }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success">
+                                        {{ isset($business->seller) ? $business->seller->first_name : '-' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    ${{ $business->value }}
+                                </td>
+                                <td width="100">
                                     <div class="btn-group">
                                         <a href="{{ route('admin.pipelines.business.edit', [$business->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.pipelines.business.destroy', [$business->id]) }}"><i class="fa fa-trash"></i></button>

@@ -59,7 +59,9 @@ class ContactController extends AdminBaseController
         $companies = Company::pluck('name', 'id');
         $countries = Country::pluck('name', 'id');
         $sources = Source::pluck('name', 'id');
-        $users = User::pluck('first_name', 'id');
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('slug', 'salesman');
+        })->pluck('first_name', 'id');
 
         return view('pipelines::admin.contacts.create', compact('companies', 'countries', 'sources', 'users'));
     }
@@ -100,7 +102,9 @@ class ContactController extends AdminBaseController
         $companies = Company::pluck('name', 'id');
         $countries = Country::pluck('name', 'id');
         $sources = Source::pluck('name', 'id');
-        $users = User::pluck('first_name', 'id');
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('slug', 'salesman');
+        })->pluck('first_name', 'id');
 
         return view('pipelines::admin.contacts.edit', compact('contact', 'companies', 'countries', 'sources', 'users'));
     }

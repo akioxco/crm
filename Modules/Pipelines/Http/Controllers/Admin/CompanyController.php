@@ -55,7 +55,9 @@ class CompanyController extends AdminBaseController
     {
         $countries = Country::pluck('name', 'id');
         $sources = Source::pluck('name', 'id');
-        $users = User::pluck('first_name', 'id');
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('slug', 'salesman');
+        })->pluck('first_name', 'id');
 
         return view('pipelines::admin.companies.create', compact('countries', 'sources', 'users'));
     }
@@ -84,7 +86,9 @@ class CompanyController extends AdminBaseController
     {
         $countries = Country::pluck('name', 'id');
         $sources = Source::pluck('name', 'id');
-        $users = User::pluck('first_name', 'id');
+        $users = User::whereHas('roles', function ($q) {
+            $q->where('slug', 'salesman');
+        })->pluck('first_name', 'id');
 
         return view('pipelines::admin.companies.edit', compact('company', 'countries', 'sources', 'users'));
     }
