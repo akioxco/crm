@@ -400,7 +400,41 @@ $router->group(['prefix' =>'/pipelines'], function (Router $router) {
         'uses' => 'EmailController@destroy',
         'middleware' => 'can:pipelines.emails.destroy'
     ]);
+    $router->bind('note', function ($id) {
+        return app('Modules\Pipelines\Repositories\NoteRepository')->find($id);
+    });
+    $router->get('notes', [
+        'as' => 'admin.pipelines.note.index',
+        'uses' => 'NoteController@index',
+        'middleware' => 'can:pipelines.notes.index'
+    ]);
+    $router->get('notes/create', [
+        'as' => 'admin.pipelines.note.create',
+        'uses' => 'NoteController@create',
+        'middleware' => 'can:pipelines.notes.create'
+    ]);
+    $router->post('notes', [
+        'as' => 'admin.pipelines.note.store',
+        'uses' => 'NoteController@store',
+        'middleware' => 'can:pipelines.notes.create'
+    ]);
+    $router->get('notes/{note}/edit', [
+        'as' => 'admin.pipelines.note.edit',
+        'uses' => 'NoteController@edit',
+        'middleware' => 'can:pipelines.notes.edit'
+    ]);
+    $router->put('notes/{note}', [
+        'as' => 'admin.pipelines.note.update',
+        'uses' => 'NoteController@update',
+        'middleware' => 'can:pipelines.notes.edit'
+    ]);
+    $router->delete('notes/{note}', [
+        'as' => 'admin.pipelines.note.destroy',
+        'uses' => 'NoteController@destroy',
+        'middleware' => 'can:pipelines.notes.destroy'
+    ]);
 // append
+
 
 
 

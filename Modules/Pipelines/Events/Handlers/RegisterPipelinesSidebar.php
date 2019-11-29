@@ -92,7 +92,17 @@ class RegisterPipelinesSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                 });
 
                 
+                $item->item(trans('pipelines::notes.title.notes'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.pipelines.note.create');
+                    $item->route('admin.pipelines.note.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('pipelines.notes.index')
+                    );
+                });
 // append
+
 
 
 
