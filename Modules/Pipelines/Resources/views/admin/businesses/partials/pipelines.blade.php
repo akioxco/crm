@@ -9,9 +9,15 @@
                 <div class="box-header">
 
                 <div class="row">
+
+
+               <!--
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                @include('pipelines::admin.pipelinebusinesses.partials.modal-create', ['lang' => $locale])
+                include('pipelines::admin.pipelinebusinesses.partials.modal-create', ['lang' => $locale])
                 </div>
+               -->
+
+
             </div>
                 </div>
 
