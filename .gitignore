@@ -5,3 +5,6 @@ Homestead.yaml
 Homestead.json
 .env
 .php_cs.cache
+.idea/
+package-lock.json
+
