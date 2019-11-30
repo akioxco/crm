@@ -78,6 +78,22 @@
         </div>
     </div>
 
+    @if(isset($contact->seller))
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3>Responsable</h3>
+                        <b>Nombre</b> {{$contact->seller->first_name}} {{$contact->seller->last_name}}<br>
+                        <b>Email</b> {{$contact->seller->email}}<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
     @if(isset($contact->businesses))
     <div class="col-md-12">
         <div class="row">
