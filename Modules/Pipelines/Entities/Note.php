@@ -4,6 +4,7 @@ namespace Modules\Pipelines\Entities;
 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Modules\User\Entities\Sentinel\User;
 
 class Note extends Model
 {
