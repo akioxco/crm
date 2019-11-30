@@ -31,15 +31,15 @@
         <div class="row">
 
             <div class="col-md-12">
-            <div class="small-box bg-green">
-                <div class="inner">
-                <h2>{{ $business->pipelineBusinesses->last()->pipeline->name }}</h2>
-                <p>Pipeline Actual</p>
+                <div class="small-box bg-green">
+                    <div class="inner">
+                    <h2>{{ $business->pipelineBusinesses->last()->pipeline->name }}</h2>
+                    <p>Pipeline Actual</p>
+                    </div>
+                    <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                    </div>
                 </div>
-                <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-                </div>
-            </div>
             </div>
 
             <div class="col-md-12">
@@ -54,7 +54,7 @@
                 <div class="icon">
                 <i class="ion ion-bag"></i>
                 </div>
-            </div>
+                </div>
             </div>
 
                  <div class="col-md-12">
@@ -101,6 +101,7 @@
                             <div class="box-header">
                                 <h4>Empresa</h4>
                                 <b>Nombre</b> {{$business->contact->company->name}} <br>
+                                <b>País</b> {{$business->contact->company->country->name}} <br>
                                 <b>Ciudad</b> {{$business->contact->company->city}} <br>
                                 <b>Correo</b> {{$business->contact->company->email}} <br>
                                 <b>Teléfono</b> {{$business->contact->company->phone}} <br>
@@ -174,7 +175,7 @@
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> 
 
 
-            <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         @include('pipelines::admin.businesses.partials.contacts', ['lang' => $locale])
                     </div>
