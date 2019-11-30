@@ -41,7 +41,9 @@ class PipelinesServiceProvider extends ServiceProvider
             $event->load('pipelinebusinesses', array_dot(trans('pipelines::pipelinebusinesses')));
             $event->load('phones', array_dot(trans('pipelines::phones')));
             $event->load('emails', array_dot(trans('pipelines::emails')));
+            $event->load('notes', array_dot(trans('pipelines::notes')));
             // append translations
+
 
 
 
@@ -220,7 +222,20 @@ class PipelinesServiceProvider extends ServiceProvider
                 return new \Modules\Pipelines\Repositories\Cache\CacheEmailDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Pipelines\Repositories\NoteRepository',
+            function () {
+                $repository = new \Modules\Pipelines\Repositories\Eloquent\EloquentNoteRepository(new \Modules\Pipelines\Entities\Note());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Pipelines\Repositories\Cache\CacheNoteDecorator($repository);
+            }
+        );
 // add bindings
+
 
 
 

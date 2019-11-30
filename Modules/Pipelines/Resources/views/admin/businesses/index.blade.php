@@ -50,7 +50,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <span class="badge badge-primary">
+                                    <span class="badge badge-primary" style="background-color:  {{ $business->pipelineBusinesses->last()->pipeline->color }};">
                                     {{ $business->pipelineBusinesses->last()->pipeline->name }}
                                     </span>
                                 </td>

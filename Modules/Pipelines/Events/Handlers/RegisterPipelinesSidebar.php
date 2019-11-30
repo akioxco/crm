@@ -37,22 +37,17 @@ class RegisterPipelinesSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('pipelines::pipelines.title.pipelines'), function (Item $item) {
+            //$group->item(trans('pipelines::pipelines.title.pipelines'), function (Item $item) {
+            $group->item(trans('CRM'), function (Item $item) {
                 $item->icon('fa fa-copy');
                 $item->weight(10);
+                $item->badge(function ($badge) {
+                    $badge->setClass('bg-greenn');
+                });
+           
                 $item->authorize(
                      /* append */
                 );
-
-                $item->item(trans('pipelines::countries.title.countries'), function (Item $item) {
-                    $item->icon('fa fa-thumb-tack');
-                    $item->weight(0);
-                    $item->append('admin.pipelines.country.create');
-                    $item->route('admin.pipelines.country.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('pipelines.countries.index')
-                    );
-                });
                 $item->item(trans('pipelines::contacts.title.contacts'), function (Item $item) {
                     $item->icon('fa fa-phone');
                     $item->weight(0);
@@ -81,29 +76,46 @@ class RegisterPipelinesSidebar implements \Maatwebsite\Sidebar\SidebarExtender
                         $this->auth->hasAccess('pipelines.businesses.index')
                     );
                 });
-                $item->item(trans('pipelines::products.title.products'), function (Item $item) {
-                    $item->icon('fa fa-product-hunt');
-                    $item->weight(0);
-                    $item->append('admin.pipelines.product.create');
-                    $item->route('admin.pipelines.product.index');
+
+                $item->item(trans('Opciones'), function (Item $item) {
+                    $item->icon('fa fa-cog');
+                    $item->weight(10);
                     $item->authorize(
-                        $this->auth->hasAccess('pipelines.products.index')
+                         /* append */
                     );
+
+                    $item->item(trans('pipelines::countries.title.countries'), function (Item $item) {
+                        $item->icon('fa fa-thumb-tack');
+                        $item->weight(0);
+                        $item->append('admin.pipelines.country.create');
+                        $item->route('admin.pipelines.country.index');
+                        $item->authorize(
+                            $this->auth->hasAccess('pipelines.countries.index')
+                        );
+                    });
+
+                    $item->item(trans('pipelines::products.title.products'), function (Item $item) {
+                        $item->icon('fa fa-product-hunt');
+                        $item->weight(0);
+                        $item->append('admin.pipelines.product.create');
+                        $item->route('admin.pipelines.product.index');
+                        $item->authorize(
+                            $this->auth->hasAccess('pipelines.products.index')
+                        );
+                    });
+
+                    $item->item(trans('pipelines::notes.title.notes'), function (Item $item) {
+                        $item->icon('fa fa-copy');
+                        $item->weight(0);
+                        //$item->append('admin.pipelines.note.create');
+                        $item->route('admin.pipelines.note.index');
+                        $item->authorize(
+                            $this->auth->hasAccess('pipelines.notes.index')
+                        );
+                    });
+
                 });
-
-                
 // append
-
-
-
-
-
-
-
-
-
-
-
 
             });
         });

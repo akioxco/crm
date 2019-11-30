@@ -101,6 +101,20 @@
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-md-12">
+            @include('pipelines::admin.businesses.partials.contacts', ['lang' => $locale])
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-md-12">
+            @include('pipelines::admin.businesses.partials.companies', ['lang' => $locale])
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             @include('pipelines::admin.businesses.partials.pipelines', ['lang' => $locale])

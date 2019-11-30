@@ -32,6 +32,7 @@
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
                                 <th>Email</th>
+                                <th>Negocio</th>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
@@ -41,7 +42,9 @@
                             <?php foreach ($contacts as $contact): ?>
                             <tr>
                                 <td>
-                                    {{ $contact->name }}
+                                    <a href="{{ route('admin.pipelines.contact.edit', [$contact->id]) }}">
+                                        {{ $contact->name }}
+                                    </a>
                                 </td>
                                 <td>
                                     {{ $contact->last_name }}
@@ -50,9 +53,10 @@
                                     {{ $contact->email }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.pipelines.contact.edit', [$contact->id]) }}">
-                                        {{ $contact->created_at }}
-                                    </a>
+                                    {{ isset($contact->company_id) ? $contact->company->name : '-' }}
+                                </td>
+                                <td>
+                                    {{ $contact->created_at }}
                                 </td>
                                 <td>
                                     <div class="btn-group">

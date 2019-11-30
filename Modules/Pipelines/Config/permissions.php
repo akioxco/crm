@@ -73,7 +73,14 @@ return [
         'edit' => 'pipelines::emails.edit resource',
         'destroy' => 'pipelines::emails.destroy resource',
     ],
+    'pipelines.notes' => [
+        'index' => 'pipelines::notes.list resource',
+        'create' => 'pipelines::notes.create resource',
+        'edit' => 'pipelines::notes.edit resource',
+        'destroy' => 'pipelines::notes.destroy resource',
+    ],
 // append
+
 
 
 

@@ -2,11 +2,11 @@
 
 @section('content-header')
     <h1>
-        {{ trans('pipelines::companies.title.companies') }}
+        {{ trans('pipelines::notes.title.notes') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
-        <li class="active">{{ trans('pipelines::companies.title.companies') }}</li>
+        <li class="active">{{ trans('pipelines::notes.title.notes') }}</li>
     </ol>
 @stop
 
@@ -15,8 +15,8 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-                    <a href="{{ route('admin.pipelines.company.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
-                        <i class="fa fa-pencil"></i> {{ trans('pipelines::companies.button.create company') }}
+                    <a href="{{ route('admin.pipelines.note.create') }}" class="btn btn-primary btn-flat" style="padding: 4px 10px;">
+                        <i class="fa fa-pencil"></i> {{ trans('pipelines::notes.button.create note') }}
                     </a>
                 </div>
             </div>
@@ -29,37 +29,44 @@
                         <table class="data-table table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Email</th>
+                                <td>#</td>
+                                <td>Nota</td>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if (isset($companies)): ?>
-                            <?php foreach ($companies as $company): ?>
+                            <?php if (isset($notes)): ?>
+                            <?php foreach ($notes as $note): ?>
                             <tr>
                                 <td>
-                                    <a href="{{ route('admin.pipelines.company.edit', [$company->id]) }}">
-                                        {{ $company->name }}
+                                    {{ $note->id }}
+                                </td>
+
+                                 <td>
+                                     {{ $note->note }}
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.pipelines.note.edit', [$note->id]) }}">
+                                        {{ $note->created_at }}
                                     </a>
-                                </td> 
-                                <td>
-                                    {{ $company->email }}
-                                </td> 
-                                <td>
-                                    {{ $company->created_at }}
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="{{ route('admin.pipelines.company.edit', [$company->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
-                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.pipelines.company.destroy', [$company->id]) }}"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.pipelines.note.edit', [$note->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.pipelines.note.destroy', [$note->id]) }}"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th>{{ trans('core::core.table.actions') }}</th>
+                            </tr>
+                            </tfoot>
                         </table>
                         <!-- /.box-body -->
                     </div>
@@ -77,7 +84,7 @@
 @section('shortcuts')
     <dl class="dl-horizontal">
         <dt><code>c</code></dt>
-        <dd>{{ trans('pipelines::companies.title.create company') }}</dd>
+        <dd>{{ trans('pipelines::notes.title.create note') }}</dd>
     </dl>
 @stop
 
@@ -86,7 +93,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.pipelines.company.create') ?>" }
+                    { key: 'c', route: "<?= route('admin.pipelines.note.create') ?>" }
                 ]
             });
         });
