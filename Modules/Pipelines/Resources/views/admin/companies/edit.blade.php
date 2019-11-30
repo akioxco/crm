@@ -39,6 +39,78 @@
     @include('pipelines::admin.companies.partials.emails', ['lang' => $locale])
     @include('pipelines::admin.companies.partials.phones', ['lang' => $locale])
 
+    <div class="row">
+
+
+        @if(isset($company->contacts))
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            Contactos
+                        </div>
+                        <div class="box-body">
+                        
+                        <table class="data-table table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Email</th>
+                                <th>Negocio</th>
+                                <th>{{ trans('core::core.table.created at') }}</th>
+                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if (isset($company->contacts)): ?>
+                            <?php foreach ($company->contacts as $contact): ?>
+                            <tr>
+                                <td>
+                                    <a href="{{ route('admin.pipelines.contact.edit', [$contact->id]) }}">
+                                        {{ $contact->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ $contact->last_name }}
+                                </td>
+                                <td>
+                                    {{ $contact->email }}
+                                </td>
+                                <td>
+                                    {{ isset($contact->company_id) ? $contact->company->name : '-' }}
+                                </td>
+                                <td>
+                                    {{ $contact->created_at }}
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('admin.pipelines.contact.edit', [$contact->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
+                            </tbody>
+                        </table>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
+
+        
+
+
+
+
+    </div>
 
 @stop
 

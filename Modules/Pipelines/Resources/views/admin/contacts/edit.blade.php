@@ -12,6 +12,8 @@
 @stop
 
 @section('content')
+<div class="row">
+    <div class="col-md-12">
     {!! Form::model($contact, ['route' => ['admin.pipelines.contact.update', $contact->id], 'method' => 'put']) !!}
     <div class="row">
         <div class="col-md-12">
@@ -35,6 +37,116 @@
         </div>
     </div>
     {!! Form::close() !!}
+    </div>
+
+    @if(isset($contact->company))
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3>Empresa</h3>
+                        <b>Nombre</b> {{$contact->company->name}} <br>
+                        <b>Ciudad</b> {{$contact->company->city}} <br>
+                        <b>Correo</b> {{$contact->company->email}} <br>
+                        <b>Teléfono</b> {{$contact->company->phone}} <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3>Notas</h3>
+                        <div class="direct-chat-msg">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-name pull-left">Vendedor</span>
+                                <span class="direct-chat-timestamp pull-right">2019-11-28 17:43:48</span>
+                            </div>  
+                            <div class="direct-chat-text">
+                                Esto es una nota
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if(isset($contact->businesses))
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3>Negocio</h3>
+                        
+
+                        <table class="data-table table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Pipeline</th>
+                                <th>Vendedor</th>
+                                <th>Valor</th>
+                                <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if (isset($contact->businesses)): ?>
+                            <?php foreach ($contact->businesses as $business): ?>
+                            <tr>
+                                <td>
+                                    {{ $business->id }}
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.pipelines.business.edit', [$business->id]) }}">
+                                        {{ $business->name }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="badge badge-primary" style="background-color:  {{ $business->pipelineBusinesses->last()->pipeline->color }};">
+                                    {{ $business->pipelineBusinesses->last()->pipeline->name }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success">
+                                        {{ isset($business->seller) ? $business->seller->first_name : '-' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    ${{ $business->value }}
+                                </td>
+                                <td width="100">
+                                    <div class="btn-group">
+                                        <a href="{{ route('admin.pipelines.business.edit', [$business->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    
+
+
+</div>
 @stop
 
 @section('footer')
