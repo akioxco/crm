@@ -5670,4 +5670,8 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
+
+  /*custom caro */
+.sidebar-menu li:nth-child(3) > ul.treeview-menu{
+  display: block;
 }

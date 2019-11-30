@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Pipelines\Entities\Business;
 use Modules\Pipelines\Entities\TypeBusiness;
+use Modules\Pipelines\Entities\Company;
 use Modules\Pipelines\Entities\Contact;
 use Modules\User\Entities\Sentinel\User;
 use Modules\Pipelines\Entities\Product;
@@ -84,15 +85,23 @@ class BusinessController extends AdminBaseController
     public function edit(Business $business)
     {
         $typebusiness = TypeBusiness::pluck('name', 'id');
+
         $contacts = Contact::pluck('name', 'id');
+      
+        $contactList = Contact::where('id', $business['contact_id'])->get();
+
+        $companies = Company::where('id', $contactList[0]['company_id'])->get();
+
         $users = User::whereHas('roles', function ($q) {
             $q->where('slug', 'salesman');
         })->pluck('first_name', 'id');
+
+
         $businesses = Business::pluck('name', 'id');
         $products = Product::pluck('name', 'id');
         $pipelines = Pipeline::pluck('name', 'id');
 
-        return view('pipelines::admin.businesses.edit', compact('business', 'typebusiness', 'contacts', 'users', 'businesses', 'products', 'pipelines'));
+        return view('pipelines::admin.businesses.edit', compact('business', 'typebusiness', 'contacts', 'users', 'businesses', 'products', 'pipelines', 'contactList', 'companies' ));
     }
 
     /**
