@@ -17,7 +17,7 @@
                     <div class="table-responsive">
                         <table class="data-table table table-bordered table-hover">
                             <thead>
-                            <tr>
+                            <tr class="text-center" >
                                 <td>#</td>
                                 <td>Producto</td>
                                 <td>Cantidad</td>
@@ -38,13 +38,13 @@
                                         {{ $detailbusiness->product->name }}
                                     </a>
                                 </td>
-                                <td>
+                                <td class="text-right" >
                                     {{ $detailbusiness->quantity }}
                                 </td>
-                                <td>
+                                <td class="text-right" >
                                     ${{ $detailbusiness->product->price }}
                                 </td>
-                                <td>
+                                <td class="text-right">
                                     ${{ $detailbusiness->product->price * $detailbusiness->quantity }}
                                 </td>
 
@@ -56,6 +56,17 @@
                                 </td>
                             </tr>
                             <?php endforeach; ?>
+
+                            <tr>
+                                <td></td>
+                                <td> </td>
+                                <td></td>
+                                <td class="text-right"> <b> Total:  </b>  </td>
+                                <td class="text-right">  <b>  ${{ isset($business->value) ? $business->value : '-' }}  </b>   </td>
+                                <td width="100">
+                                </td>
+                            </tr>
+
                             <?php endif; ?>
                             </tbody>
                         </table>

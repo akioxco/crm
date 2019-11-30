@@ -1,12 +1,7 @@
-<div class="row">
-    <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
-        @include('pipelines::admin.phones.partials.modal-create', ['lang' => $locale])
-    </div>
-</div>
 
 
-<div class="row">
-    <div class="col-md-12">
+
+    <div class="col-md-6">
         <div class="nav-tabs-custom">
             <div class="tab-content">
                 <div class="box-body">
@@ -39,9 +34,13 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="row">
+                        <div class="btn-group pull-right" style="margin: 0 15px 15px 0;">
+                            @include('pipelines::admin.phones.partials.modal-create', ['lang' => $locale])
+                        </div>
+                     </div>
                 </div>
             </div>
         </div>
     </div>
     @include('core::partials.delete-modal')
-</div>

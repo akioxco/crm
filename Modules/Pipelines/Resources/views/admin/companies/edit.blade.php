@@ -36,12 +36,12 @@
     </div>
     {!! Form::close() !!}
 
-    @include('pipelines::admin.companies.partials.emails', ['lang' => $locale])
-    @include('pipelines::admin.companies.partials.phones', ['lang' => $locale])
+    <div class="row">
+        @include('pipelines::admin.companies.partials.emails', ['lang' => $locale])
+        @include('pipelines::admin.companies.partials.phones', ['lang' => $locale])
+    </div>
 
     <div class="row">
-
-
         @if(isset($company->contacts))
         <div class="col-md-12">
             <div class="row">
@@ -103,15 +103,7 @@
             </div>
         </div>
         @endif
-
-
-        
-
-
-
-
     </div>
-
 @stop
 
 
@@ -144,3 +136,5 @@
         });
     </script>
 @endpush
+
+

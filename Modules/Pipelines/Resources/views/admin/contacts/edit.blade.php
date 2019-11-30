@@ -40,7 +40,7 @@
     </div>
 
     @if(isset($contact->company))
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
@@ -50,6 +50,7 @@
                         <b>Ciudad</b> {{$contact->company->city}} <br>
                         <b>Correo</b> {{$contact->company->email}} <br>
                         <b>Teléfono</b> {{$contact->company->phone}} <br>
+                        <a href="{{ route('admin.pipelines.company.edit', [$contact->company->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a>
                     </div>
                 </div>
             </div>
@@ -57,6 +58,25 @@
     </div>
     @endif
     
+    @if(isset($contact->seller))
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3>Responsable</h3>
+                        <b>Nombre</b> {{$contact->seller->first_name}} {{$contact->seller->last_name}}<br>
+                        <b>Email</b> {{$contact->seller->email}}<br>
+                        <!-- <a href="{{ route('admin.user.user.edit', [$contact->seller->id]) }}" class="btn btn-default btn-flat"><i class="fa fa-pencil"></i></a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+
+
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-12">
@@ -78,25 +98,11 @@
         </div>
     </div>
 
-    @if(isset($contact->seller))
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3>Responsable</h3>
-                        <b>Nombre</b> {{$contact->seller->first_name}} {{$contact->seller->last_name}}<br>
-                        <b>Email</b> {{$contact->seller->email}}<br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
+
 
     @if(isset($contact->businesses))
     <div class="col-md-12">
-        <div class="row">
+
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
@@ -194,3 +200,5 @@
         });
     </script>
 @endpush
+
+
