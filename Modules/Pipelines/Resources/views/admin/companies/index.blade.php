@@ -40,15 +40,15 @@
                             <?php foreach ($companies as $company): ?>
                             <tr>
                                 <td>
-                                    {{ $company->name }}
+                                    <a href="{{ route('admin.pipelines.company.edit', [$company->id]) }}">
+                                        {{ $company->name }}
+                                    </a>
                                 </td> 
                                 <td>
                                     {{ $company->email }}
                                 </td> 
                                 <td>
-                                    <a href="{{ route('admin.pipelines.company.edit', [$company->id]) }}">
-                                        {{ $company->created_at }}
-                                    </a>
+                                    {{ $company->created_at }}
                                 </td>
                                 <td>
                                     <div class="btn-group">

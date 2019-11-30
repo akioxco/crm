@@ -49,4 +49,11 @@ class Company extends Model
     {
         return $this->belongsTo(User::class, 'seller_id');
     }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+
+    
 }
