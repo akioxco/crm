@@ -45,5 +45,15 @@ class Contact extends Model
         return $this->belongsTo(User::class, 'seller_id');
     }
 
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function businesses()
+    {
+        return $this->hasMany(Business::class);
+    }
+
 
 }
