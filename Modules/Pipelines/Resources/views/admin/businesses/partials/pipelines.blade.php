@@ -25,7 +25,7 @@
                             <i class="fa fa-clock-o bg-gray bg-yellow"></i>
                             <div class="timeline-item">
                                 <span class="time"><i class="fa fa-clock-o"></i> {{ $pipelinebusiness->created_at }}</span>
-                                <h3 class="timeline-header"><a href="#">{{ $pipelinebusiness->pipeline->name }}</a></h3>
+                                <h3 class="timeline-header"> <a href="#"   class="badge badge-primary" style="background-color:  {{$pipelinebusiness->pipeline->color }};"   >{{ $pipelinebusiness->pipeline->name }} </a></h3>
                                 <div class="timeline-body">
                                     {{ $pipelinebusiness->description ? $pipelinebusiness->description : '' }} <br>
                                     {{ $pipelinebusiness->date }}

@@ -31,6 +31,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Color</th>
                                 <th>{{ trans('core::core.table.created at') }}</th>
                                 <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                             </tr>
@@ -44,6 +45,9 @@
                                 </td>
                                 <td>
                                     {{ $pipeline->name }}
+                                </td>
+                                <td>
+                                    {{ $pipeline->color }} <div style="background:{{ $pipeline->color }}; width: 7px; height: 23px; float: left; margin-right: 10px;" >   </div> 
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.pipelines.pipeline.edit', [$pipeline->id]) }}">
