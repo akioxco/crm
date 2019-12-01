@@ -20,7 +20,7 @@ class CreatePipelinesNotesTable extends Migration
             $table->foreign('seller_id')->references('id')->on('users')->onDelete('restrict');
 
             $table->unsignedInteger('contact_id')->nullable();
-            $table->foreign('contact_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('contact_id')->references('id')->on('pipelines__contacts')->onDelete('restrict');
 
             $table->timestamps();
         });
