@@ -61,9 +61,13 @@ class NoteController extends AdminBaseController
      */
     public function store(CreateNoteRequest $request)
     {   
-        $request['seller_id'] = auth()->user()->id;
-        $this->note->create($request->all());
-
+        $this->note->create([
+            'note' => $request['note'],
+            'seller_id' => auth()->user()->id,
+            'contact_id' => $request['contact_id'],
+        ]);
+        
+        return back()->withInput();
         return redirect()->route('admin.pipelines.note.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('pipelines::notes.title.notes')]));
     }
