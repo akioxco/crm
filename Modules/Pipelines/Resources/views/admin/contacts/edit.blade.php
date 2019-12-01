@@ -159,16 +159,37 @@
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3>Notas</h3>
-                                    <div class="direct-chat-msg">
-                                        <div class="direct-chat-info clearfix">
-                                            <span class="direct-chat-name pull-left">Vendedor</span>
-                                            <span class="direct-chat-timestamp pull-right">2019-11-28 17:43:48</span>
-                                        </div>  
-                                        <div class="direct-chat-text">
-                                            Esto es una nota
-                                        </div>
+                                    
+
+                                    <div>
+                                        {!! Form::open(['route' => ['admin.pipelines.note.store'], 'method' => 'post']) !!}
+                                            @editor('note')
+                                            <div style="display:none">
+                                                {!! Form::number('contact_id', $contact->id) !!}
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn btn-primary btn-flat pull-right">{{ trans('core::core.button.create') }}</button>
+                                            <br>
+                                        {!! Form::close() !!}
                                     </div>
+                                    <br>
+
+
+                                        @if(isset($contact->notes))
+                                        @foreach($contact->notes as $note)
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-info clearfix">
+                                                <span class="direct-chat-name pull-left">{{$note->seller->first_name}} {{$note->seller->last_name}}</span>
+                                                <span class="direct-chat-timestamp pull-right">{{$note->created_at}}</span>
+                                            </div>  
+                                            <div class="direct-chat-text" style="margin:0px 0 0 0px">
+                                                {!!  $note->note  !!}
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        @endif
+
+
                                 </div>
                             </div>
                         </div>
