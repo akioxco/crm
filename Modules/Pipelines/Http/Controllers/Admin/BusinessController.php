@@ -11,11 +11,11 @@ use Modules\Pipelines\Entities\Contact;
 use Modules\User\Entities\Sentinel\User;
 use Modules\Pipelines\Entities\Product;
 use Modules\Pipelines\Entities\Pipeline;
-
 use Modules\Pipelines\Http\Requests\CreateBusinessRequest;
 use Modules\Pipelines\Http\Requests\UpdateBusinessRequest;
 use Modules\Pipelines\Repositories\BusinessRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Pipelines\Transformers\BusinessTransformer;
 
 class BusinessController extends AdminBaseController
 {
@@ -44,7 +44,11 @@ class BusinessController extends AdminBaseController
             $businesses = Business::where('seller_id', auth()->user()->id)->get();
         }
 
-        return view('pipelines::admin.businesses.index', compact('businesses'));
+        $businessesJson = json_encode(BusinessTransformer::collection($businesses));
+        //return json_encode($businessesJson);
+        $pipelines = Pipeline::pluck('name');
+
+        return view('pipelines::admin.businesses.index', compact('businesses', 'pipelines', 'businessesJson'));
     }
 
     /**

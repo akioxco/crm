@@ -11,6 +11,8 @@ import VueSimplemde from 'vue-simplemde';
 import PageRoutes from '../../../Modules/Page/Assets/js/PageRoutes';
 import MediaRoutes from '../../../Modules/Media/Assets/js/MediaRoutes';
 import UserRoutes from '../../../Modules/User/Assets/js/UserRoutes';
+import vueKanban from 'vue-kanban'
+import kanbanComponent from '../js/components/kanban';
 
 Vue.use(ElementUI, { locale });
 Vue.use(VueI18n);
@@ -28,7 +30,8 @@ Vue.component('EditButton', require('../../../Modules/Core/Assets/js/components/
 Vue.component('TagsInput', require('../../../Modules/Tag/Assets/js/components/TagInput.vue'));
 Vue.component('SingleMedia', require('../../../Modules/Media/Assets/js/components/SingleMedia.vue'));
 Vue.component('MediaManager', require('../../../Modules/Media/Assets/js/components/MediaManager.vue'));
-
+Vue.use(vueKanban)
+Vue.use(kanbanComponent)
 
 const currentLocale = window.AsgardCMS.currentLocale;
 const adminPrefix = window.AsgardCMS.adminPrefix;

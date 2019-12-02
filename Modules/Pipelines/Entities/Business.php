@@ -50,4 +50,8 @@ class Business extends Model
         }
         return $value;
     }
+
+    public function getStatusAttribute (){
+        return $this->pipelineBusinesses->last()->pipeline->name;
+    }
 }

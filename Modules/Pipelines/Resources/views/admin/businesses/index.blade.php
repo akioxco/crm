@@ -11,6 +11,26 @@
 @stop
 
 @section('content')
+
+
+<link href="{{ asset('css/kanban.css') }}" rel="stylesheet">
+
+    <kanban-board
+        :stages="{{ json_encode( $pipelines) }}" 
+        :blocks="{{ ( $businessesJson) }}">
+        
+        
+        <div v-for="block in {{$businessesJson}}" :slot="block.id" :key="block.id">
+            <div>
+                <strong>@{{ block.name }}</strong>
+            </div>
+            <div>
+                @{{ block.seller }}
+            </div>
+        </div>
+
+    </kanban-board>
+
     <div class="row">
         <div class="col-xs-12">
             <div class="row">
